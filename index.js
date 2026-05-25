@@ -1,8 +1,10 @@
-const express = require("express")
-const fs = require("fs")
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(cors());
 
 //http://localhost:3000/saudacao?nome=maria
 app.get("/saudacao", (req,res)=>{
@@ -37,7 +39,7 @@ app.post("/media",(req,res) =>{
     const {nota1, nota2}= req.body;
 
     if( !nota1 || !nota2){
-        return res.status(404).json({erro: "dados imcompletos"})
+        return res.status(404).json({erro: "dados incompletos"})
     }
     const media = (parseFloat(nota1) + parseFloat(nota2))/2;
     
